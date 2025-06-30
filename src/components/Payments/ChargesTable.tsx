@@ -1,8 +1,10 @@
+import { memo, type FC } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Collapse, Box, Typography } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import ChargeDetailsTable from './ChargeDetailsTable';
 import type { Subscr } from '../../types/charges';
+import { formatAmount } from '../../utils/amountUtils';
+import ChargeDetailsTable from './ChargeDetailsTable';
 
 interface ChargesTableProps {
   subscr: Subscr;
@@ -10,7 +12,7 @@ interface ChargesTableProps {
   onChargeRowClick: (subscrId: number, chargeId: number) => void;
 }
 
-const ChargesTable = ({ subscr, expandedCharge, onChargeRowClick }: ChargesTableProps) => (
+const ChargesTable: FC<ChargesTableProps> = ({ subscr, expandedCharge, onChargeRowClick }) => (
   <TableContainer component={Paper}>
     <Table size="small">
       <TableHead>
@@ -24,19 +26,15 @@ const ChargesTable = ({ subscr, expandedCharge, onChargeRowClick }: ChargesTable
         </TableRow>
       </TableHead>
       <TableBody>
-        {subscr.charges.map((charge) => {
-
-          const {
-            ChargeId,
-            PeriodName,
-            DebtByBeginMonth,
-            Amount,
-            Payment,
-            AmountToPay,
-            ChargeDetails
-          } = charge
-
-          return (
+        {subscr.charges.map(({
+          ChargeId,
+          PeriodName,
+          DebtByBeginMonth,
+          Amount,
+          Payment,
+          AmountToPay,
+          ChargeDetails
+        }) => (
             <>
               <TableRow key={ChargeId} hover>
                 <TableCell>
@@ -45,10 +43,10 @@ const ChargesTable = ({ subscr, expandedCharge, onChargeRowClick }: ChargesTable
                   </IconButton>
                 </TableCell>
                 <TableCell>{PeriodName}</TableCell>
-                <TableCell align="right">{DebtByBeginMonth.toLocaleString('ru-RU', {minimumFractionDigits: 2})}</TableCell>
-                <TableCell align="right">{Amount.toLocaleString('ru-RU', {minimumFractionDigits: 2})}</TableCell>
-                <TableCell align="right">{Payment.toLocaleString('ru-RU', {minimumFractionDigits: 2})}</TableCell>
-                <TableCell align="right">{AmountToPay.toLocaleString('ru-RU', {minimumFractionDigits: 2})}</TableCell>
+                <TableCell align="right">{formatAmount(DebtByBeginMonth)}</TableCell>
+                <TableCell align="right">{formatAmount(Amount)}</TableCell>
+                <TableCell align="right">{formatAmount(Payment)}</TableCell>
+                <TableCell align="right">{formatAmount(AmountToPay)}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -64,10 +62,10 @@ const ChargesTable = ({ subscr, expandedCharge, onChargeRowClick }: ChargesTable
               </TableRow>
             </>
           )
-        })}
+        )}
       </TableBody>
     </Table>
   </TableContainer>
 );
 
-export default ChargesTable; 
+export default memo(ChargesTable); 

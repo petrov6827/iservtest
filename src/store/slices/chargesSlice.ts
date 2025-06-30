@@ -37,9 +37,7 @@ export const fetchCharges = createAsyncThunk<
     const ExtToken = localStorage.getItem(USER_LOCALSTORAGE_KEY);
     if (!ExtToken) return rejectWithValue('Токен авторизации не найден');
 
-    const { PeriodBegin, PeriodEnd } = formatPeriodForAPI(
-      fromMonth, fromYear, toMonth, toYear
-    )
+    const { PeriodBegin, PeriodEnd } = formatPeriodForAPI(fromMonth, fromYear, toMonth, toYear)
 
     try {
       const response = await fetch(`${import.meta.env.VITE_APP_API}/Ext/GetChargesExt`, {
@@ -96,4 +94,4 @@ const chargesSlice = createSlice({
 });
 
 export const { setFromMonth, setFromYear, setToMonth, setToYear } = chargesSlice.actions;
-export default chargesSlice.reducer;
+export const { reducer: chargesReducer } = chargesSlice;

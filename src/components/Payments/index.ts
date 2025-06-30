@@ -1,3 +1,3 @@
 import PaymentsList from './PaymentsList';
 
-export {PaymentsList as Payments}
+export { PaymentsList as Payments }

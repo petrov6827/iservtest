@@ -2,13 +2,13 @@ import { useDispatch } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { loginReducer } from './slices/loginSlice'
 import { userReducer } from './slices/userSlice'
-import chargesReducer from './slices/chargesSlice'
-import subscrsReducer from './slices/subscrsSlice'
+import { chargesReducer } from './slices/chargesSlice'
+import { subscrsReducer } from './slices/subscrsSlice'
 
 const store = configureStore({
   reducer: {
-		user: userReducer,
-		loginForm: loginReducer,
+    user: userReducer,
+    loginForm: loginReducer,
     subscrs: subscrsReducer,
     charges: chargesReducer,
   },

@@ -15,5 +15,4 @@ export const months = [
   { value: 12, label: 'Декабрь' },
 ];
 
-//массив последних 9 годов начиная с текущего
-export const years = getYearsList(9);
+export const years = getYearsList(10);

@@ -14,7 +14,7 @@ const initialState: SubscrsState = {
   error: null,
 };
 
-export const fetchSubscrs = createAsyncThunk<Subscr[], void, {rejectValue: string}>(
+export const fetchSubscrs = createAsyncThunk<Subscr[], void, { rejectValue: string }>(
   'subscrs/fetchSubscrs',
   async (_, { rejectWithValue }) => {
     const ExtToken = localStorage.getItem(USER_LOCALSTORAGE_KEY);
@@ -61,4 +61,4 @@ const subscrsSlice = createSlice({
   },
 });
 
-export default subscrsSlice.reducer;
+export const { reducer: subscrsReducer } = subscrsSlice

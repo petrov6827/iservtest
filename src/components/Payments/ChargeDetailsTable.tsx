@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 import type { ChargeDetail } from '../../types/charges';
 
@@ -20,35 +21,31 @@ const ChargeDetailsTable = ({ details }: ChargeDetailsTableProps) => (
       </TableRow>
     </TableHead>
     <TableBody>
-      {details.map((detail) => {
-
-        const {
-          ChargeDetailId,
-          GroupName,
-          Name,
-          Quantity,
-          Tariff,
-          UnitName,
-          Total,
-          Amount,
-          Recalc
-        } = detail
-
-        return (
-          <TableRow key={ChargeDetailId}>
-            <TableCell>{GroupName}</TableCell>
-            <TableCell>{Name}</TableCell>
-            <TableCell align="right">{Quantity}</TableCell>
-            <TableCell align="right">{Tariff}</TableCell>
-            <TableCell>{UnitName}</TableCell>
-            <TableCell align="right">{Total}</TableCell>
-            <TableCell align="right">{Amount}</TableCell>
-            <TableCell align="right">{Recalc}</TableCell>
-          </TableRow>
-        )
-      })}
+      {details.map(({
+        ChargeDetailId,
+        GroupName,
+        Name,
+        Quantity,
+        Tariff,
+        UnitName,
+        Total,
+        Amount,
+        Recalc
+      }) => (
+        <TableRow key={ChargeDetailId}>
+          <TableCell>{GroupName}</TableCell>
+          <TableCell>{Name}</TableCell>
+          <TableCell align="right">{Quantity}</TableCell>
+          <TableCell align="right">{Tariff}</TableCell>
+          <TableCell>{UnitName}</TableCell>
+          <TableCell align="right">{Total}</TableCell>
+          <TableCell align="right">{Amount}</TableCell>
+          <TableCell align="right">{Recalc}</TableCell>
+        </TableRow>
+      )
+      )}
     </TableBody>
   </Table>
 );
 
-export default ChargeDetailsTable; 
+export default memo(ChargeDetailsTable); 

@@ -1,18 +1,18 @@
 import type { FC } from 'react';
-import {Dialog} from '@mui/material';
+import { Dialog } from '@mui/material';
 import LoginForm from './LoginForm';
 
 interface LoginModalProps {
-	open: boolean;
-	onClose: () => void
+  open: boolean;
+  onClose: () => void
 }
 
 export const LoginModal: FC<LoginModalProps> = (props) => {
-	const { open, onClose } = props;
+  const { open, onClose } = props;
 
-	return (
-		<Dialog onClose={onClose} open={open}>
-			<LoginForm />
-		</Dialog>
-	)
+  return (
+    <Dialog onClose={onClose} open={open}>
+      <LoginForm />
+    </Dialog>
+  )
 }
