@@ -19,8 +19,8 @@ interface ServerResponse {
 const initialState: LoginSchema = {
 	Username: '',
 	Password: '',
-	loading: false,
-	error: undefined,
+	isLoading: false,
+	error: null
 };
 
 export const loginSlice = createSlice({
@@ -37,15 +37,15 @@ export const loginSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(loginByUsername.pending, (state) => {
-				state.error = undefined
-				state.loading = true
+				state.error = null
+				state.isLoading = true
 			})
 			.addCase(loginByUsername.fulfilled, (state) => {
-				state.loading = false
+				state.isLoading = false
 			})
 			.addCase(loginByUsername.rejected, (state, action) => {
 				state.error = action.payload as string
-				state.loading = false
+				state.isLoading = false
 			})
 	},
 })

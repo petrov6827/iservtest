@@ -1,14 +1,14 @@
-import type { Charge, Subscr } from '../types/charges';
+import type { Subscr } from '../types/charges';
 
-export interface UserState {
-	id: string | null;
-	username: string | null;
-	token: string | null;
-	isLoading: boolean;
-	error: string | null;
+export interface User {
+	token: string;
 }
 
-export interface ChargesState {
+export interface UserSchema {
+	authData?: User
+}
+
+export interface ChargesShema {
 	data: Subscr[];
 	isLoading: boolean;
 	error: string | null;
@@ -20,17 +20,17 @@ export interface ChargesState {
 	};
 }
 
-export interface LoginFormState {
-	username: string;
-	password: string;
+export interface LoginSchema {
+	Username: string;
+	Password: string;
 	isLoading: boolean;
 	error: string | null;
 }
 
 export interface StateSchema {
-	user: UserState;
-	loginForm: LoginFormState;
-	charges: ChargesState;
+	user: UserSchema;
+	loginForm: LoginSchema;
+	charges: ChargesShema;
 	subscrs: {
 		data: Subscr[];
 		isLoading: boolean;
