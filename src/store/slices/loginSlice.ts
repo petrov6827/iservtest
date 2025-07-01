@@ -73,7 +73,7 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
       }
 
       const userData: User = { token: response.data.extToken };
-      localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(userData));
+      localStorage.setItem(USER_LOCALSTORAGE_KEY, userData.token);
       dispatch(userActions.setAuthData(userData));
 
       return userData
