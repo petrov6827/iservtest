@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Typography } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 import { useAppDispatch } from '../../store/store';
 import { fetchSubscrs } from '../../store/slices/subscrsSlice';
 import { getSubscrs } from '../../store/selectors/getSubscrs';
-import { subscrsMock } from '../../mock/subscrMock';
 import PaymentsItem from './PaymentsItem';
 
 const PaymentsList = () => {
   const dispatch = useAppDispatch();
   const [expandedSubscr, setExpandedSubscr] = useState<number | null>();
   const [expandedCharge, setExpandedCharge] = useState<{ [key: number]: number | false }>({});
-  const { subscrs, loading, error } = useSelector(getSubscrs);
+  const { subscrs, loading } = useSelector(getSubscrs);
 
   const handleSubscrChange = useCallback((subscrId: number) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpandedSubscr(isExpanded ? subscrId : null)
@@ -30,8 +29,7 @@ const PaymentsList = () => {
 
   const paymentsItems = useMemo(
     () =>
-      // {subscrs.map((subscr) => { 
-      subscrsMock.map((subscr) => {
+      subscrs.map((subscr) => {
         const { SubscrId } = subscr;
         return (
           <PaymentsItem
@@ -44,13 +42,13 @@ const PaymentsList = () => {
           />
         );
       }),
-    [expandedSubscr, expandedCharge, handleSubscrChange, handleChargeRowClick]
+    [subscrs, expandedSubscr, handleSubscrChange, expandedCharge, handleChargeRowClick]
   );
 
   return (
     <>
       <Typography variant="h6" gutterBottom>Начисления</Typography>
-      {loading && <div>Загрузка...</div>}
+      {loading && <CircularProgress />}
       {paymentsItems}
     </>
   );

@@ -33,6 +33,7 @@ export const fetchCharges = createAsyncThunk<
 >(
   'charges/fetchCharges',
   async (_, { getState, rejectWithValue }) => {
+    console.log('fetch')
     const { fromMonth, fromYear, toMonth, toYear } = getState().charges;
     const ExtToken = localStorage.getItem(USER_LOCALSTORAGE_KEY);
     if (!ExtToken) return rejectWithValue('Токен авторизации не найден');

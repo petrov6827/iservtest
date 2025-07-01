@@ -17,16 +17,18 @@ interface PaymentsItemProps {
   onChargeRowClick: (subscrId: number, chargeId: number) => void;
 }
 
+const SOME_NUM = 100;
+
 const PaymentsItem: FC<PaymentsItemProps> = ({ subscr, expanded, onChange, expandedCharge, onChargeRowClick }) => {
   const dispatch = useAppDispatch();
   const { fromMonth, fromYear, toMonth, toYear, charges } = useSelector(getChargesState);
 
-  const fromPeriod = fromYear * 100 + fromMonth;
-  const toPeriod = toYear * 100 + toMonth;
+  const fromPeriod = fromYear * SOME_NUM + fromMonth;
+  const toPeriod = toYear * SOME_NUM + toMonth;
 
   const filteredCharges = useMemo(
-    () => subscr.charges.filter(c => c.Period >= fromPeriod && c.Period <= toPeriod),
-    [subscr.charges, fromPeriod, toPeriod]
+    () => charges.filter(c => c.Period >= fromPeriod && c.Period <= toPeriod),
+    [charges, fromPeriod, toPeriod]
   );
 
   useEffect(() => {

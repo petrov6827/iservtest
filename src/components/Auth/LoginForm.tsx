@@ -64,7 +64,7 @@ const LoginForm = memo(() => {
     const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();
 
-    if (!isEmailValid || !isPasswordValid) {
+    if (!isPasswordValid) {
       return;
     }
 
