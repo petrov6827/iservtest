@@ -4,6 +4,7 @@ export const apiUrl = 'https://testlkamur.dvec.ru'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: `/iservtest/`,
   plugins: [
     react()
   ],
