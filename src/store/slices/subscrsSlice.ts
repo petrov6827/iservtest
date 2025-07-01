@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { Subscr } from '../../types/charges';
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
-import { BASE_URL } from '../../api/apiUrl';
+import { BASE_URL } from '../../api/api';
 
 export interface SubscrsState {
   subscrs: Subscr[];

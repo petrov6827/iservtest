@@ -10,4 +10,4 @@ React redux project with authorization and payments page
 npm i && npm run dev
 ```
 
-ручка переключения авторизации в папке mock/authData.ts
+валидацию по почте закомментил в компоненте components/Auth/LoginForm

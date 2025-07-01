@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
 import { userActions, type User } from './userSlice';
-import { BASE_URL } from '../../api/apiUrl';
+import { BASE_URL } from '../../api/api';
 
 interface LoginByUsernameProps {
   Username: string;

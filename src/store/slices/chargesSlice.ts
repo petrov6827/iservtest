@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { Charge } from '../../types/charges';
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
 import { getInitialPeriod, formatPeriodForAPI } from '../../utils/dateUtils';
-import { BASE_URL } from '../../api/apiUrl';
+import { BASE_URL } from '../../api/api';
 
 const period = getInitialPeriod();
 
