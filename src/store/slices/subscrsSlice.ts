@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit';
 import type { Subscr } from '../../types/charges';
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
+import { BASE_URL } from '../../api/apiUrl';
 
 export interface SubscrsState {
   subscrs: Subscr[];
@@ -21,7 +22,7 @@ export const fetchSubscrs = createAsyncThunk<Subscr[], void, { rejectValue: stri
     if (!ExtToken) return rejectWithValue('Токен авторизации не найден');
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_API}/Ext/GetSubscrsExt`, {
+      const response = await fetch(`${BASE_URL}/Ext/GetSubscrsExt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ExtToken }),

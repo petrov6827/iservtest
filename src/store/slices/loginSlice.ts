@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
 import { userActions, type User } from './userSlice';
+import { BASE_URL } from '../../api/apiUrl';
 
 interface LoginByUsernameProps {
   Username: string;
@@ -61,7 +62,7 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, { re
     const { dispatch, rejectWithValue } = thunkAPI
     try {
       const response = await axios.post<AuthResponse>(
-        `${import.meta.env.VITE_APP_API}/Ext/LogOnExt`,
+        `${BASE_URL}/Ext/LogOnExt`,
         { Username, Password },
         { headers: { 'Content-Type': 'application/json' } }
       );

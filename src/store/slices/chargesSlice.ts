@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { Charge } from '../../types/charges';
 import { USER_LOCALSTORAGE_KEY } from '../../const/localStorage';
 import { getInitialPeriod, formatPeriodForAPI } from '../../utils/dateUtils';
+import { BASE_URL } from '../../api/apiUrl';
 
 const period = getInitialPeriod();
 
@@ -41,7 +42,7 @@ export const fetchCharges = createAsyncThunk<
     const { PeriodBegin, PeriodEnd } = formatPeriodForAPI(fromMonth, fromYear, toMonth, toYear)
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_APP_API}/Ext/GetChargesExt`, {
+      const response = await fetch(`${BASE_URL}/Ext/GetChargesExt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ExtToken, PeriodBegin, PeriodEnd }),
