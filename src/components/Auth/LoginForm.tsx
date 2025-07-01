@@ -27,18 +27,18 @@ const LoginForm = memo(() => {
   const [showPassword, setShowPassword] = useState(false);
 
   const { Username, Password, error } = useSelector(getLoginState);
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const validateEmail = useCallback(() => {
-    if (!emailRegex.test(Username)) {
-      setEmailError('*Введите корректный email адрес');
-      return false;
-    }
+  // const validateEmail = useCallback(() => {
+  //   if (!emailRegex.test(Username)) {
+  //     setEmailError('*Введите корректный email адрес');
+  //     return false;
+  //   }
 
-    setEmailError(null);
-    return true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Username]);
+  //   setEmailError(null);
+  //   return true;
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [Username]);
 
   const validatePassword = useCallback(() => {
     if (Password.length < 3) {
@@ -61,7 +61,7 @@ const LoginForm = memo(() => {
   }, [dispatch, passwordError])
 
   const onLoginClick = useCallback(() => {
-    const isEmailValid = validateEmail();
+    // const isEmailValid = validateEmail();
     const isPasswordValid = validatePassword();
 
     if (!isPasswordValid) {
@@ -69,7 +69,7 @@ const LoginForm = memo(() => {
     }
 
     dispatch(loginByUsername({ Username, Password }))
-  }, [dispatch, Password, Username, validateEmail, validatePassword])
+  }, [dispatch, Password, Username, validatePassword])
 
   const togglePasswordVisibility = useCallback(() => {
     setShowPassword(prev => !prev);
